@@ -1,0 +1,121 @@
+
+# ----- PLEASE NOTE ------
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+
+# to enable external database
+#todo add appropriate secrets and or configmap to support access to external database
+mariadb:
+  enabled: false
+  auth:
+    database: vaultwarden
+    username: vaultwarden
+    password: dagr
+    rootPassword: dagr
+  primary: 
+    persistence:
+      enabled: false
+      # storageClass: ""
+      # size: 8Gi
+
+# -- Configure persist storage for deployment
+persistence:
+# -- Volume used for configuration
+  config:
+    enabled: true
+    mountpath: /config
+
+    storageClass:   "standard"
+    accessMode: ReadWriteOnce
+    size: 2.5Gi
+    # -- Set to true to retain the PVC upon `helm uninstall`
+    retain: false
+
+controller:
+  enabled: true
+  type: deployment
+  annotations: {app.kubernetes.io/instance, 
+                app.kubernetes.io/name,
+                app.kubernetes.io/version}
+  labels: {app.kubernetes.io/name}
+  replicas: 1
+  strategy: RollingUpdate
+# controller image
+image:
+  # -- set image repository
+  repository: vaultwarden/server
+  # -- set image pull policy
+  pullPolicy: IfNotPresent
+  # -- set image tag
+  tag: 1.27.0-alpine
+
+# -- Set image pull secrets
+imagePullSecrets: []
+
+serviceAccount:
+  name: "vaultwarden-sa"
+  create: true
+  annotations: {app.kubernetes.io/instance, 
+                app.kubernetes.io/name,
+                app.kubernetes.io/version}
+  labels: {app.kubernetes.io/name}
+
+automountServiceAccountToken: true
+
+secret: {}
+  # PASSWORD: my-password
+
+# -- Configure configMaps for the chart here.
+# Additional configMaps can be added by adding a dictionary key similar to the 'config' object.
+configmap:
+  config:
+    # -- Enables or disables the configMap
+    enabled: false
+    # -- Labels to add to the configMap
+    labels: {}
+    # -- Annotations to add to the configMap
+    annotations: {}
+    # -- configMap data content. Helm template enabled.
+    data: {}
+      # foo: bar
+
+env:
+
+# -- Secrets and/or ConfigMaps that will be loaded as environment variables.
+# [[ref]](https://unofficial-kubernetes.readthedocs.io/en/latest/tasks/configure-pod-container/configmap/#use-case-consume-configmap-in-environment-variables)
+envFrom: []
+# - configMapRef:
+#     name: config-map-name
+# - secretRef:
+#     name: secret-name
+
+service:
+  main:
+    ports:
+      http:
+        port: 80
+      websocket:
+        enabled: true
+        port: 3012
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See [values.yaml](./values.yaml)
+  main:
+    enabled: true
+    hosts:
+      - host: vaultwardern.webui.com
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: 80
+          - path: /notifications/hub/negotiate
+            pathType: Prefix
+            service:
+              port: 80
+          - path: /notifications/hub
+            pathType: Prefix
+            service:
+              port: 3012

@@ -1,0 +1,24 @@
+annotations:
+  artifacthub.io/changes: |-
+    - kind: changed
+      description: Upgraded `common` chart dependency to version 4.5.2
+apiVersion: v2
+appVersion: 1.25.2
+dependencies:
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.5.2
+- condition: mariadb.enabled
+  name: mariadb
+  repository: https://charts.bitnami.com/bitnami
+  version: 11.0.14
+
+description: Vaultwarden is a Bitwarden compatable server in Rust
+home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/vaultwarden
+icon: https://sesoodan.sirv.com/bitwarden_rs.png
+keywords:
+- Vaultwarden
+- bitwardenrs
+kubeVersion: '>=1.16.0-0'
+name: vaultwarden
+version: 5.3.2

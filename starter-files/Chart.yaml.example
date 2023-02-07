@@ -1,0 +1,25 @@
+annotations:
+  artifacthub.io/changes: |-
+    - kind: changed
+      description: Upgraded `common` chart dependency to version 4.5.2
+apiVersion: v2
+appVersion: 4.5.2 # update app version
+# add dependency as needed; can leverage "condition: chart_name.enabled" which allows values.yaml to control whether the dependency chart is deployed.
+# do not remove common dependency.
+dependencies: 
+- name: common
+  repository: https://library-charts.k8s-at-home.com
+  version: 4.5.2
+# example using conditonal dependency.
+#- condition: mariadb.enabled
+#  name: mariadb
+#  repository: https://charts.bitnami.com/bitnami
+#  version: 11.0.14
+
+description: add a description here.
+keywords: # add key words; not required.
+- keyword1 #list item one
+- keyword2 #list item two
+kubeVersion: '>=1.16.0-0'
+name: new-chart #update chart name
+version: 0.0.1 #update chart version
