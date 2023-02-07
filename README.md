@@ -28,11 +28,11 @@ You can design your own new Helm Chart that leverages the common library chart v
    - Check to see if manifests render -- run: "helm template <name> ."
      
    - Execute a test deployment -- run: "helm install [instance-name] ."
-     note: An nginx pod will deploy; this validates that the common library chart is properly wired and you are ready to design your application.  Follow the          helm notes to validate deployment.
+     note: An nginx pod will deploy; this validates that the common library chart is properly wired and you are ready to design your application.  Follow the helm notes to validate deployment.
   
 10) Design your application: 
-    Leverage the properties in the values.yaml file to configure your application. The values.yaml exposes all configurable properties from the common library       chart; if you do not edit a property then the default value will be used that is located in the values.yaml file. 
-    - To get started: Alter the image properties with your application image and specifications (remove nginx image repo and add your own application image repo.
+    Leverage the properties in the values.yaml file to configure your application. The values.yaml exposes all configurable properties from the common library chart; if you do not edit a property then the default value will be used that is located in the values.yaml file. 
+    - To get started: Alter the image properties with your application image and specifications (remove nginx image repo and add your own application image repo.).
 
  
 Things to know:
