@@ -1,6 +1,6 @@
 # vaultwarden
 
-To test the vaultwarden helm chart, clone the repositor, cd into the cloned directory, and run the following commands:
+To test the vaultwarden helm chart, clone the repository, cd into the vaultwarden directory, and run the following commands:
 1) helm dependency update
 2) helm install [name} ./vaultwarden
 
