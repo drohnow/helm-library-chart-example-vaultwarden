@@ -9,9 +9,9 @@ This is an example of a Helm chart that is utilizing a common Helm Library Chart
 The following common libary chart was utilized.
 https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common to configure the vaultwarden application.
 
-You can design your new Helm Chart utilizing the following process:
+You can design your own new Helm Chart that leverages the common library chart via the following process:
 
-0) clone this repository
+0) Clone this repository
 1) Create a new heml chart:  "helm create [new-chart-name]"
 2) Removes unnecessary files:
     - rm -rf [new-chart-name]/templates/*
