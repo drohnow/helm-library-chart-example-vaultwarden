@@ -97,7 +97,7 @@ service:
         port: 80
       websocket:
         enabled: true
-        port: 3012
+        port: 3015
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
