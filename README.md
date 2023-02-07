@@ -34,11 +34,8 @@ You can design your own new Helm Chart that leverages the common library chart v
     Leverage the properties in the values.yaml file to configure your application. The values.yaml exposes all configurable properties from the common library       chart; if you do not edit a property then the default value will be used that is located in the values.yaml file. 
     - To get started: Alter the image properties with your application image and specifications.
         image:
-        # -- image repository
-        repository: nginx #remove nginx and add your application image
-        # -- image tag
-        tag: latest #add tag
-        # -- image pull policy
+        repository: nginx 
+        tag: latest 
         pullPolicy: IfNotPresent
 
  
