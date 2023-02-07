@@ -28,6 +28,7 @@ You can design your own new Helm Chart that leverages the common library chart v
    - Check to see if manifests render -- run: "helm template <name> ."
      
    - Execute a test deployment -- run: "helm install [instance-name] ."
+    
      note: An nginx pod will deploy; this validates that the common library chart is properly wired and you are ready to design your application.  Follow the helm notes to validate deployment.
   
 10) Design your application: 
